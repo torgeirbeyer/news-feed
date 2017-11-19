@@ -2,11 +2,15 @@
   "extends": "standard",
   "env": {
     "browser": true,
+    "es6": true,
     "node": true
   },
   "globals": {
     "google": true,
     "axios": true
+  },
+  "parserOptions": { 
+    "ecmaVersion": 6
   },
   "rules": {
     "space-before-function-paren": ["error", "never"],
@@ -17,6 +21,7 @@
     "no-console": 0,
     "no-var": "error",
     "prefer-const": "error",
+    "no-multiple-empty-lines": "off",
     "max-len": ["error", 120]
   }
 }

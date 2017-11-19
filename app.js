@@ -10,6 +10,9 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const expressLayouts = require("express-ejs-layouts");
 const MongoStore = require("connect-mongo")(session);
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 // -- REQUIRE MODELS
 const index = require("./routes/index");
