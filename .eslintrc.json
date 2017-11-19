@@ -14,12 +14,7 @@
     "semi": [2, "always"],
     "comma-dangle": ["error", "never"],
     "space-in-parens": ["error", "never"],
-    "no-console": [
-      "error",
-      {
-        "allow": ["warn", "error"]
-      }
-    ],
+    "no-console": 0,
     "no-var": "error",
     "prefer-const": "error",
     "max-len": ["error", 120]

@@ -8,12 +8,12 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
-const expressLaoyts = require("express-ejs-layouts");
+const expressLayouts = require("express-ejs-layouts");
 const MongoStore = require("connect-mongo")(session);
 
 // -- REQUIRE MODELS
 const index = require("./routes/index");
-const users = require("./routes/users");
+const auth = require("./routes/auth");
 
 // -- SETUP APP
 const app = express();
@@ -43,7 +43,7 @@ app.use(
 );
 
 // -- VIEWS
-app.use("expressLayouts");
+app.use(expressLayouts);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.set("layout", "layouts/main");
@@ -57,7 +57,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // -- ROUTES
 app.use("/", index);
-app.use("/users", users);
+app.use("/auth", auth);
 
 // -- ERROR HANDLER AND 404
 // NOTE: requires a views/not-found.ejs template
