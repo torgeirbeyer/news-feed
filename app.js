@@ -68,8 +68,8 @@ passport.use(new LocalStrategy({
   passwordField: "password",
   passReqToCallback: true
 },
-(username, password, next) => {
-  User.findOne({ username }, (err, user) => {
+(req, username, password, next) => {
+  User.findOne({ email: username }, (err, user) => {
     if (err) {
       return next(err);
     }
