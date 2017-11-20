@@ -63,6 +63,7 @@ passport.deserializeUser((id, cb) => {
 });
 
 app.use(flash());
+// -- LocalStrategy
 passport.use(new LocalStrategy({
   usernameField: "email",
   passwordField: "password",
