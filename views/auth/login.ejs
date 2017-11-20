@@ -10,3 +10,14 @@
     Login
   </button>
 </form>
+
+<br><br>
+<% if (typeof errorMessage !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>
+<br><br>
+
+<p class="account-message">
+  Do not have an account yet?
+  <a href="signup">Sign Up</a>
+</p>

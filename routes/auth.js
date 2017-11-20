@@ -6,43 +6,43 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const passport = require("passport");
-const ensureLogin = require("connect-ensure-login");
 
 const User = require("../models/user");
 
 // -- LOGIN PAGE
 router.get("/login", function(req, res, next) {
-  res.render("auth/login");
+  res.render("auth/login", { errorMessage: req.flash("error") });
 });
 
-/* router.post("/login", passport.authenticate("local", {
+router.post("/login", passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
-})); */
+}));
 
-// -- SIGNUPLocalStrategy
-/* router.get("/signup", function(req, res, next) {
-  res.render("auth/signup", {
-    errorMessage: ""
-  });
+// -- SIGNUP PAGE
+router.get("/signup", function(req, res, next) {
+  res.render("auth/signup");
 });
 
-router.post("/auth/signup", function(req, res, next) {
-  const email = req.body.email;
+router.post("/signup", function(req, res, next) {
+  const username = req.body.email;
   const password = req.body.password;
-  if (email === "" || password === "") {
+  if (username === "" || password === "") {
     res.render("auth/signup", {
       errorMessage: "Indicate an email and a password to sign up"
     });
     return;
   }
 
-  User.findOne({"email": email}, "username", (err, user) => {
+  User.findOne({email: username}, (err, email) => {
+    if (err) {
+      next(err);
+    }
     if (email !== null) {
       res.render("auth/signup", {
-        errorMessage: "The email already exists"
+        errorMessage: "This email already exists"
       });
       return;
     }
@@ -50,7 +50,7 @@ router.post("/auth/signup", function(req, res, next) {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
     const newUser = User({
-      email: email,
+      email: username,
       password: hashPass
     });
     newUser.save((err) => {
@@ -58,10 +58,16 @@ router.post("/auth/signup", function(req, res, next) {
         next(err);
       }
       req.login(newUser, () => {
-        res.redirect("/index");
+        res.redirect("/");
       });
     });
   });
-}); */
+});
+
+// -- LOGOUT
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
 
 module.exports = router;
