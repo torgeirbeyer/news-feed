@@ -9,7 +9,7 @@
     "google": true,
     "axios": true
   },
-  "parserOptions": { 
+  "parserOptions": {
     "ecmaVersion": 6
   },
   "rules": {

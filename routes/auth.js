@@ -12,7 +12,7 @@ const User = require("../models/user");
 
 // -- LOGIN PAGE
 router.get("/login", function(req, res, next) {
-  res.render("/auth/login");
+  res.render("auth/login");
 });
 
 /* router.post("/login", passport.authenticate("local", {
