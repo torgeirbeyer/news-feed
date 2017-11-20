@@ -22,11 +22,10 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-// -- SIGNUPLocalStrategy
+// -- SIGNUP PAGE
 router.get("/signup", function(req, res, next) {
   res.render("auth/signup");
 });
-
 
 router.post("/signup", function(req, res, next) {
   const username = req.body.email;
@@ -39,9 +38,12 @@ router.post("/signup", function(req, res, next) {
   }
 
   User.findOne({email: username}, (err, email) => {
+    if (err) {
+      next(err);
+    }
     if (email !== null) {
       res.render("auth/signup", {
-        errorMessage: "The email already exists"
+        errorMessage: "This email already exists"
       });
       return;
     }
@@ -61,6 +63,12 @@ router.post("/signup", function(req, res, next) {
       });
     });
   });
+});
+
+// -- LOGOUT
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
 });
 
 module.exports = router;
