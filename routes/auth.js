@@ -12,34 +12,33 @@ const User = require("../models/user");
 
 // -- LOGIN PAGE
 router.get("/login", function(req, res, next) {
-  res.render("/auth/login");
+  res.render("auth/login");
 });
 
-/* router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "index",
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
-})); */
+}));
 
 // -- SIGNUPLocalStrategy
-/* router.get("/signup", function(req, res, next) {
-  res.render("auth/signup", {
-    errorMessage: ""
-  });
+router.get("/signup", function(req, res, next) {
+  res.render("auth/signup");
 });
 
-router.post("/auth/signup", function(req, res, next) {
-  const email = req.body.email;
+
+router.post("/signup", function(req, res, next) {
+  const username = req.body.email;
   const password = req.body.password;
-  if (email === "" || password === "") {
+  if (username === "" || password === "") {
     res.render("auth/signup", {
       errorMessage: "Indicate an email and a password to sign up"
     });
     return;
   }
 
-  User.findOne({"email": email}, "username", (err, user) => {
+  User.findOne({email: username}, (err, email) => {
     if (email !== null) {
       res.render("auth/signup", {
         errorMessage: "The email already exists"
@@ -50,7 +49,7 @@ router.post("/auth/signup", function(req, res, next) {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
     const newUser = User({
-      email: email,
+      email: username,
       password: hashPass
     });
     newUser.save((err) => {
@@ -58,10 +57,10 @@ router.post("/auth/signup", function(req, res, next) {
         next(err);
       }
       req.login(newUser, () => {
-        res.redirect("/index");
+        res.redirect("/");
       });
     });
   });
-}); */
+});
 
 module.exports = router;
