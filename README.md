@@ -1,8 +1,7 @@
 # USER STORIES
 
 # User interaction
-## Signup
-As a user I will be able to sign up with my emailadress/username and encrypted password 
+
 
 ## Login
 As a user I will be able to log in with my emailadress/username and password. If I am not a user I will be redirected to the sign up page
@@ -34,6 +33,9 @@ As a user I can delete stories from my news feed when I have read them
 ## Refresh feed
 As a user I can refresh the feed to get the latest news from a location
 
+#DONE
+## Signup
+As a user I will be able to sign up with my emailadress/username and encrypted password 
 
 
 

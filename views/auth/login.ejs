@@ -10,3 +10,8 @@
     Login
   </button>
 </form>
+
+<br><br>
+<% if (typeof errorMessage !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>
