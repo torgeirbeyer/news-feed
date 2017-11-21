@@ -30,15 +30,28 @@ function main() {
             },
             map: map
           });
-
-          console.log(userMarker.position.lat());
+          document.getElementById("user-lat").value = userMarker.position.lat();
+          document.getElementById("user-lng").value = userMarker.position.lng();
+          // console.log(userMarker.position.lat());
         },
         function() {
           console.log("Error in the geolocation service.");
+          map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 6,
+            center: {lat: 41, lng: 2}
+          }
+          );
+          initializeSearch();
         }
       );
     } else {
       console.log("Browser does not support geolocation.");
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 6,
+        center: {lat: 41, lng: 2}
+      }
+      );
+      initializeSearch();
     }
   }
 
@@ -62,9 +75,9 @@ function main() {
       markers.forEach(function(marker) {
         marker.setMap(null);
         const latLng = marker.getPosition();
-
-        console.log(latLng);
       });
+
+
       markers = [];
 
       const bounds = new google.maps.LatLngBounds();
@@ -87,7 +100,9 @@ function main() {
           lng: place.geometry.location.lng()
         };
 
-        console.log(newLocation);
+        document.getElementById("user-lat").value = newLocation.lat;
+        document.getElementById("user-lng").value = newLocation.lng;
+
 
         if (place.geometry.viewport) {
         // Only geocodes have viewport.
