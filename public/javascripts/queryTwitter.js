@@ -15,6 +15,7 @@ getQuery.addEventListener("click", () => {
   getTwitterApiInfo(city);
 }); */
 
+// const searchBox = new google.maps.places.SearchBox(input);
 
 searchBox.addListener("places_changed", () => {
   const myForm = document.getElementById("myform");
