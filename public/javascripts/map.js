@@ -36,7 +36,6 @@ function main() {
           // console.log(userMarker.position.lat());
         },
         function() {
-          console.log("Error in the geolocation service.");
           map = new google.maps.Map(document.getElementById("map"), {
             zoom: 6,
             center: {lat: 41, lng: 2}
@@ -46,7 +45,6 @@ function main() {
         }
       );
     } else {
-      console.log("Browser does not support geolocation.");
       map = new google.maps.Map(document.getElementById("map"), {
         zoom: 6,
         center: {lat: 41, lng: 2}
@@ -105,6 +103,11 @@ function main() {
         document.getElementById("user-lat").value = newLocation.lat;
         document.getElementById("user-lng").value = newLocation.lng;
 
+        // Submit info from forms to the back-end
+        const latLong = document.getElementById("myform");
+        const searchInput = document.getElementById("search-input");
+        latLong.submit();
+        searchInput.submit();
 
         if (place.geometry.viewport) {
         // Only geocodes have viewport.
