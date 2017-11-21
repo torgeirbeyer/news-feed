@@ -10,7 +10,8 @@ const Article = require("../models/article");
 router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
   res.render("index", {
     title: "Your News Feed",
-    user: req.user });
+    user: req.user
+  });
 });
 
 router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {
@@ -20,7 +21,7 @@ router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {
     if (err) {
       next(err);
     }
-    let savedArticles = [];
+    const savedArticles = [];
     // for each article that belong to this user, do this
     user.articles.forEach((article) => {
       // get article properties (key value pairs)

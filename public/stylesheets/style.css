@@ -25,39 +25,56 @@ a {
 h2 {
   margin: 15vh auto 5vh;
   text-align: center;
+  letter-spacing: 2px;
+  font-size: 2.5rem;
+  font-weight: 500;
 }
 
 /* LOGIN & SIGNUP */
+.account-message, .error-message {
+  text-align: center;
+  font-size: 1.3rem;
+}
 .form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  font-size: 1.7rem;
 }
 
 .button {
 	box-shadow:inset 0px 1px 3px 0px #91b8b3;
 	background-color:#768d87;
 	border-radius:5px;
-	border:1px solid #566963;
+	border:1px solid #fff;
 	display:inline-block;
-	color:#ffffff;
+	color:#fff;
 	font-family:Arial;
-	font-size:15px;
-	padding:11px 23px;
+  padding:1rem 2rem;
+  font-size: 1rem;
 	text-decoration:none;
 	text-shadow:0px -1px 0px #2b665e;
 }
 .button:hover {
 	background-color:#6c7c7c;
 }
-button:focus {
+button:focus, input:focus {
   outline: 0;
 }
 
 .text-input {
   margin: 5vh auto;
   font-size: 1.7rem;
+  border: 3px solid #fff;
+  border-radius: 5px;
+  background-color: inherit;
+  height: 3.2rem;
+}
+
+.text {
+  letter-spacing: 2px;
+  font-weight: 300;
 }
 
 
