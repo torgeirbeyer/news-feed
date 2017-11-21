@@ -20,8 +20,13 @@ router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
   res.render("index", {
     title: "Your News Feed",
     user: req.user
-  // console.log(bearerToken);
   });
+});
+
+router.post("/", (req, res, next) => {
+  const lat = req.body.userlat;
+  const lng = req.body.userlng;
+  console.log(lat, lng);
 });
 
 router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {
@@ -56,12 +61,6 @@ router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {
       articles: savedArticles
     });
   });
-});
-
-router.post("/", (req, res, next) => {
-  const lat = req.body.userlat;
-  const lng = req.body.userlng;
-  console.log(lat, lng);
 });
 
 module.exports = router;

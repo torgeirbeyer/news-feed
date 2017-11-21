@@ -1,13 +1,13 @@
 "use strict";
-
+/* 
 function getTwitterApiInfo(place) {
-  /* axios
+  axios
     .get(
       `http://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`
     )
     .then(response => console.log(response))
-    .catch(error => console.log(error)); */
-};
+    .catch(error => console.log(error));
+}; */
 
 /* const getQuery = document.getElementById("pac-input");
 getQuery.addEventListener("click", () => {
@@ -15,16 +15,19 @@ getQuery.addEventListener("click", () => {
   getTwitterApiInfo(city);
 }); */
 
-// const searchBox = new google.maps.places.SearchBox(input);
+console.log("blaa");
 
-searchBox.addListener("places_changed", () => {
+const searchBoxContainer = document.getElementById("pac-input");
+
+searchBoxContainer.addListener("places_changed", () => {
+  console.log("blee");
   const myForm = document.getElementById("myform");
   myForm.submit();
-  // const places = searchBox.getPlaces();
+  const places = searchBoxContainer.getPlaces();
 
-  if (places.length === 0) {
-
+/*   if (places.length === 0) {
+    return;
   } else {
     getTwitterApiInfo(places);
-  }
+  } */
 });
