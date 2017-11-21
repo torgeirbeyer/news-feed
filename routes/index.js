@@ -4,10 +4,14 @@ const express = require("express");
 const router = express.Router();
 const ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 const User = require("../models/user");
+const requestToken = require("../twitterOauth").request;
 const Article = require("../models/article");
+let bearerToken = null;
 
 /* GET home page. */
 router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
+  bearerToken = requestToken.callback();
+  console.log(bearerToken);
   res.render("index", {
     title: "Your News Feed",
     user: req.user });
