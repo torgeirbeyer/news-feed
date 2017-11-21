@@ -11,6 +11,7 @@ function main() {
     };
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
