@@ -82,7 +82,7 @@ button:focus, input:focus {
 .navbar {
   display: flex;
   justify-content: flex-end;
-  height: 5vh;
+  height: 8vh;
   /* position: fixed; */
   z-index: 10;
   background-color: white;
@@ -93,6 +93,7 @@ button:focus, input:focus {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  text-decoration: none;
 }
 .navlinks li {
   padding-right: 5%;
@@ -105,7 +106,7 @@ button:focus, input:focus {
   position: relative;
 }
 #map {
-  margin-top: 5vh;
+  margin-top: 8vh;
   height: 60vh;
   width: 100vw;
   margin: 0 auto;

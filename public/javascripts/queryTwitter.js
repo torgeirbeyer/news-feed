@@ -17,10 +17,12 @@ getQuery.addEventListener("click", () => {
 
 
 searchBox.addListener("places_changed", () => {
-  const places = searchBox.getPlaces();
+  const myForm = document.getElementById("myform");
+  myForm.submit();
+  // const places = searchBox.getPlaces();
 
   if (places.length === 0) {
-    return;
+
   } else {
     getTwitterApiInfo(places);
   }

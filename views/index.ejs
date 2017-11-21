@@ -14,13 +14,15 @@
   </div>
 <% } %>
 <div class="map">
+    <div class="search-input">
+        <input id="pac-input" class="controls" type="text" placeholder="Search">
+      </div>
   <div id="map"></div>
-  <div class="search-input">
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-  </div>
 </div>
-<input type="number" id="user-lat">
-<input type="number" id="user-lng">
+<form action="/" method="POST" id="myform">
+  <input type="number" id="user-lat" name="userlat">
+  <input type="number" id="user-lng" name="userlng">
+</form>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>

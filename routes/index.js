@@ -15,12 +15,12 @@ router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
       throw (err);
     }
     bearerToken = body; // the bearer token...
-    console.log(bearerToken);
+    // console.log(bearerToken);
   });
-  console.log(bearerToken);
   res.render("index", {
     title: "Your News Feed",
     user: req.user
+  // console.log(bearerToken);
   });
 });
 
@@ -40,7 +40,7 @@ router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {
         if (err) {
           next(err);
         }
-        console.log(element);
+        // console.log(element);
         savedArticles.push({
           title: element.title,
           URL: element.URL,
@@ -56,6 +56,12 @@ router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {
       articles: savedArticles
     });
   });
+});
+
+router.post("/", (req, res, next) => {
+  const lat = req.body.userlat;
+  const lng = req.body.userlng;
+  console.log(lat, lng);
 });
 
 module.exports = router;

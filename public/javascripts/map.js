@@ -74,7 +74,8 @@ function main() {
 
       markers.forEach(function(marker) {
         marker.setMap(null);
-        const latLng = marker.getPosition();
+        // const latLng = marker.getPosition();
+        // console.log(latLng);
       });
 
 
