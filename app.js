@@ -10,14 +10,14 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const expressLayouts = require("express-ejs-layouts");
 const MongoStore = require("connect-mongo")(session);
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const TwitterStrategy = require("passport-twitter").Strategy;
+// const LocalStrategy = require("passport-local").Strategy;
+// const TwitterStrategy = require("passport-twitter").Strategy;
 const flash = require("connect-flash");
 const passportConfig = require("./helper/passportHelper").passportConfig;
 
-const User = require("./models/user");
+// const User = require("./models/user");
 
 // -- REQUIRE MODELS
 const index = require("./routes/index");
