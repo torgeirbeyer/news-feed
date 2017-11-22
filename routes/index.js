@@ -31,7 +31,7 @@ router.post("/", ensureLoggedIn("auth/login"), (req, res, next) => {
       res.render("index", {
         title: "Your News Feed",
         user: req.user,
-        results: results
+        results: results.statuses
       });
     });
   } else {

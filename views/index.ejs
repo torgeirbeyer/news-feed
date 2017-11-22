@@ -25,17 +25,21 @@
   Long <input type="hidden" id="user-lng" name="userlng">
 </form>
 
-<pre>
-  <%- JSON.stringify(results) %>
-</pre>
+<% if(results){ %>
 <ul>
-  <% for(var key in results) { %>
-    <%= results[key] %>
-  <li><h4> 
-  </h4></li>
+  <% for(var ix = 0; ix < results.length; ix++) { %>
+    
+    <li>
+      <h4><%= results[ix].user.name %></h4>
+      <p><%= results[ix].text %></p>
+      <p><%= results[ix].created_at %></p>
+    </li>
+    <% } %>
+  </ul>
   <% } %>
-</ul>
-  
+  <pre>
+    <%- JSON.stringify(results, null, 2) %>
+  </pre>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGotWDrwHvXMsAajopiAqXCcWmIlVk9s&libraries=places"></script>
