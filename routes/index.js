@@ -24,10 +24,16 @@ router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  /* const lat = req.body.userlat;
+  const lat = req.body.userlat;
   const lng = req.body.userlng;
-  console.log(lat, lng); */
-  queryApi(accessToken);
+  queryApi(accessToken, lat, lng, (results) => {
+    console.log(results);
+    res.redirect("/");
+    // res.render("index", {
+    //   title: "Your News Feed",
+    //   user: req.user
+    // });
+  });
 });
 
 router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {

@@ -1,6 +1,6 @@
 "use strict";
 
-const R = require("request");
+const request = require("request");
 const Buffer = require("buffer").Buffer;
 require("dotenv").config();
 
@@ -11,7 +11,7 @@ const credentials = new Buffer(cat).toString("base64");
 
 function requestToken(cb) {
   const url = "https://api.twitter.com/oauth2/token";
-  R({ url: url,
+  request({ url: url,
     method: "POST",
     headers: {
       "Authorization": "Basic " + credentials,
@@ -22,22 +22,21 @@ function requestToken(cb) {
   }, cb);
 }
 
-function queryApi(accessToken) {
+function queryApi(accessToken, lat, lng, cb) {
   const bearerToken = JSON.parse(accessToken).access_token;
-  const url = "https://api.twitter.com/1.1/statuses/user_timeline.json?";
-  R({ url: url,
+  const url = "https://api.twitter.com/1.1/search/tweets.json";
+  request({ url: url,
     method: "GET",
-    qs: {"screen_name": "lacazeto"},
+    qs: {"geocode": lat, lng},
     json: true,
     headers: {
       "Authorization": "Bearer " + bearerToken
     }
-
   }, function(err, resp, body) {
     if (err) {
       throw (err);
     }
-    console.log(body);
+    cb(body);
   });
 }
 
