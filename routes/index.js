@@ -4,35 +4,34 @@ const express = require("express");
 const router = express.Router();
 const ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 const User = require("../models/user");
-const requestToken = require("../services/twitterOauth").requestToken;
-const queryApi = require("../services/twitterOauth").queryApi;
-const Article = require("../services/twitterOauth");
-let accessToken = null;
+const requestToken = require("../services/twitterService").requestToken;
+const queryApi = require("../services/twitterService").queryApi;
+const Article = require("../services/twitterService");
 
 /* GET home page. */
 router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
-  requestToken(function(err, resp, body) {
-    if (err) {
-      throw (err);
-    }
-    accessToken = body; // the bearer token...
-  });
+  const userId = req.query.id;
   res.render("index", {
     title: "Your News Feed",
-    user: req.user
+    user: req.user,
+    results: null
   });
 });
 
-router.post("/", (req, res, next) => {
+router.post("/", ensureLoggedIn("auth/login"), (req, res, next) => {
   const lat = req.body.userlat;
   const lng = req.body.userlng;
-  queryApi(accessToken, lat, lng, (results) => {
+  console.log(lat, lng);
+  queryApi(req.user.token, req.user.tokenSecret, lat, lng, (err, results) => {
+    if (err) {
+      return next(err);
+    }
     console.log(results);
-    res.redirect("/");
-    // res.render("index", {
-    //   title: "Your News Feed",
-    //   user: req.user
-    // });
+    res.render("index", {
+      title: "Your News Feed",
+      user: req.user,
+      results: results
+    });
   });
 });
 
