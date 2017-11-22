@@ -18,7 +18,6 @@ On the landing screen the app will show my location with a predefined zoom and X
 On the landing screen I can search for places to get the latest news from a specific area
 
 # Google News API
-
 ## Saving stories
 As an user I can save stories from my news feed to read later
 

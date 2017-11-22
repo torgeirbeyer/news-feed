@@ -85,18 +85,20 @@ button:focus, input:focus {
   height: 8vh;
   /* position: fixed; */
   z-index: 10;
-  background-color: white;
+  background-color: inherit;
   width: 100vw;
+  border-bottom: 1px solid white;
 }
 .navlinks {
   list-style: none;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  text-decoration: none;
 }
-.navlinks li {
+.navlinks li a{
   padding-right: 5%;
+  text-decoration: none; 
+  color: black; 
 }
 /* LANDING PAGE */
 .map {
