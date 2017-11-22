@@ -24,17 +24,22 @@ function main() {
           map.setCenter(userLocation);
 
           // Add a marker for your user location
-          const userMarker = new google.maps.Marker({
-            position: {
-              lat: userLocation.lat,
-              lng: userLocation.lng
-            },
-            map: map
-          });
+
+          markers.push(
+            new google.maps.Marker({
+              position: {
+                lat: userLocation.lat,
+                lng: userLocation.lng
+              },
+              map: map
+            }));
+
+          const userMarker = markers[0];
           document.getElementById("user-lat").value = userMarker.position.lat();
           document.getElementById("user-lng").value = userMarker.position.lng();
           // console.log(userMarker.position.lat());
         },
+        // if not granted location
         function() {
           map = new google.maps.Map(document.getElementById("map"), {
             zoom: 6,
@@ -44,6 +49,7 @@ function main() {
           initializeSearch();
         }
       );
+      // if browser not geolocation compatible
     } else {
       map = new google.maps.Map(document.getElementById("map"), {
         zoom: 6,
@@ -70,7 +76,6 @@ function main() {
       if (places.length === 0) {
         return;
       }
-
       markers.forEach(function(marker) {
         marker.setMap(null);
         // const latLng = marker.getPosition();
@@ -95,6 +100,8 @@ function main() {
           })
         );
 
+
+
         const newLocation = {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng()
@@ -105,9 +112,9 @@ function main() {
 
         // Submit info from forms to the back-end
         const latLong = document.getElementById("myform");
-        const searchInput = document.getElementById("search-input");
+        // const searchInput = document.getElementById("search-input");
         latLong.submit();
-        searchInput.submit();
+        // searchInput.submit();
 
         if (place.geometry.viewport) {
         // Only geocodes have viewport.
