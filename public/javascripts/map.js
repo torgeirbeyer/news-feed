@@ -1,6 +1,7 @@
 function main() {
   let map;
   let markers = [];
+  const tweetMarkers = [];
 
   function startMap() {
     // CREATE MAP
