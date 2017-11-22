@@ -22,11 +22,12 @@ function requestToken(cb) {
   }, cb);
 }
 
-function queryApi(bearerToken) {
-  const url = "https://api.twitter.com/1.1/geo/search.json?query=Toronto";
+function queryApi(accessToken) {
+  const bearerToken = JSON.parse(accessToken).access_token;
+  const url = "https://api.twitter.com/1.1/statuses/user_timeline.json?";
   R({ url: url,
     method: "GET",
-    qs: {"screen_name": "stadolf"},
+    qs: {"screen_name": "lacazeto"},
     json: true,
     headers: {
       "Authorization": "Bearer " + bearerToken
@@ -36,7 +37,7 @@ function queryApi(bearerToken) {
     if (err) {
       throw (err);
     }
-    console.dir(body);
+    console.log(body);
   });
 }
 

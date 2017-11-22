@@ -64,6 +64,13 @@ router.post("/signup", function(req, res, next) {
   });
 });
 
+// -- LOGIN / SIGNUP WITH TWITTER
+router.get("/twitter", passport.authenticate("twitter"));
+router.get("/twitter/callback", passport.authenticate("twitter", {
+  successRedirect: "/",
+  failureRedirect: "/auth/login"
+}));
+
 // -- LOGOUT
 router.get("/logout", (req, res) => {
   req.logout();

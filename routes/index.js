@@ -4,10 +4,10 @@ const express = require("express");
 const router = express.Router();
 const ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 const User = require("../models/user");
-const requestToken = require("../twitterOauth").requestToken;
-const queryApi = require("../twitterOauth").queryApi;
-const Article = require("../models/article");
-let bearerToken = null;
+const requestToken = require("../services/twitterOauth").requestToken;
+const queryApi = require("../services/twitterOauth").queryApi;
+const Article = require("../services/twitterOauth");
+let accessToken = null;
 
 /* GET home page. */
 router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
@@ -15,8 +15,7 @@ router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
     if (err) {
       throw (err);
     }
-    bearerToken = body; // the bearer token...
-    console.log(bearerToken);
+    accessToken = body; // the bearer token...
   });
   res.render("index", {
     title: "Your News Feed",
@@ -25,10 +24,10 @@ router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const lat = req.body.userlat;
+  /* const lat = req.body.userlat;
   const lng = req.body.userlng;
-  console.log(lat, lng);
-  queryApi(bearerToken);
+  console.log(lat, lng); */
+  queryApi(accessToken);
 });
 
 router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {

@@ -13,6 +13,7 @@ const MongoStore = require("connect-mongo")(session);
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const TwitterStrategy = require("passport-twitter").Strategy;
 const flash = require("connect-flash");
 
 const User = require("./models/user");
@@ -83,6 +84,35 @@ passport.use(new LocalStrategy({
 
     return next(null, user);
   });
+}));
+
+passport.use(new TwitterStrategy({
+  consumerKey: process.env.TWITTER_CONSUMER_KEY,
+  consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+  callbackURL: "/auth/twitter/callback"
+}, (token, tokenSecret, profile, done) => {
+  User.findOne({ twitterId: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      twitterId: profile.id,
+      token: token,
+      tokenSecret: tokenSecret
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
 }));
 
 app.use(passport.initialize());
