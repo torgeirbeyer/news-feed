@@ -49,9 +49,14 @@ function passportConfig() {
         return done(err);
       }
       if (user) {
-        // @todo update user with twitterId: profile.id, $set: {token: ......}
-        // and then done..
-        return done(null, user);
+        User.findOneAndUpdate({twitterId: profile.id},
+          {"$set": {token: token, tokenSecret: tokenSecret}}, (err, user) => {
+            if (err) {
+              return done(err);
+            } else {
+              return done(null, user);
+            }
+          });
       } else {
         const newUser = new User({
           twitterId: profile.id,
