@@ -13,8 +13,10 @@ function queryApi(userToken, userSecret, lat, lng, cb) {
     access_token_secret: userSecret
   });
 
-  const params = {screen_name: "nodejs"};
-  client.get("statuses/user_timeline", params, (err, tweets, response) => {
+  const geocode = `${lat},${lng},10km`;
+
+  const params = {q: "%23BreakingNews", geocode: geocode};
+  client.get("search/tweets", params, (err, tweets, response) => {
     cb(err, tweets);
   });
 }
