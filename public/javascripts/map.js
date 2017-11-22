@@ -3,6 +3,9 @@ function main() {
   let markers = [];
   const tweetMarkers = [];
 
+  // function addTweetMarker(lat, lng)
+
+
   function startMap() {
     // CREATE MAP
     let userLocation;

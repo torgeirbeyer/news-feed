@@ -26,7 +26,7 @@ router.post("/", ensureLoggedIn("auth/login"), (req, res, next) => {
     if (err) {
       return next(err);
     }
-    console.log(results);
+    console.log(results.statuses[0].user.name);
     res.render("index", {
       title: "Your News Feed",
       user: req.user,
