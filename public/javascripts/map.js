@@ -11,7 +11,7 @@ function main() {
     };
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-
+    // GET USER LOCATION
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
@@ -20,11 +20,11 @@ function main() {
             lng: position.coords.longitude
           };
 
+
           // Center map with user location
           map.setCenter(userLocation);
 
           // Add a marker for your user location
-
           markers.push(
             new google.maps.Marker({
               position: {
@@ -39,7 +39,7 @@ function main() {
           document.getElementById("user-lng").value = userMarker.position.lng();
           // console.log(userMarker.position.lat());
         },
-        // if not granted location
+        // if not granted access to location
         function() {
           map = new google.maps.Map(document.getElementById("map"), {
             zoom: 6,
@@ -92,6 +92,8 @@ function main() {
           return;
         }
 
+
+
         markers.push(
           new google.maps.Marker({
             map: map,
@@ -109,6 +111,7 @@ function main() {
 
         document.getElementById("user-lat").value = newLocation.lat;
         document.getElementById("user-lng").value = newLocation.lng;
+        console.log(place);
 
         // Submit info from forms to the back-end
         const latLong = document.getElementById("myform");
