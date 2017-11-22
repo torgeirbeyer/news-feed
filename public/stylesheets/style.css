@@ -204,3 +204,11 @@ button:focus, input:focus {
 #target {
   width: 345px;
 }
+
+@media (min-width: 1000px) {
+  #map {
+    width: 80vw;
+    margin: 0 auto;
+  }
+  
+}
