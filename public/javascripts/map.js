@@ -104,9 +104,9 @@ function main() {
 
         // Submit info from forms to the back-end
         const latLong = document.getElementById("myform");
-        const searchInput = document.getElementById("search-input");
+        // const searchInput = document.getElementById("search-input");
         latLong.submit();
-        searchInput.submit();
+        // searchInput.submit();
 
         if (place.geometry.viewport) {
         // Only geocodes have viewport.

@@ -13,14 +13,13 @@ function getTwitterApiInfo(place) {
 getQuery.addEventListener("click", () => {
   const city = document.getElementById("pac-input").value;
   getTwitterApiInfo(city);
-}); */
+}); 
 
-console.log("blaa");
+
 
 const searchBoxContainer = document.getElementById("pac-input");
 
 searchBoxContainer.addListener("places_changed", () => {
-  console.log("blee");
   const myForm = document.getElementById("myform");
   myForm.submit();
   const places = searchBoxContainer.getPlaces();
@@ -29,5 +28,5 @@ searchBoxContainer.addListener("places_changed", () => {
     return;
   } else {
     getTwitterApiInfo(places);
-  } */
-});
+  } 
+}); */
