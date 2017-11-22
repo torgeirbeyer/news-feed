@@ -9,6 +9,9 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const userSchema = new Schema({
   email: String,
   password: String,
+  twitterId: String,
+  token: String,
+  tokenSecret: String,
   preferences: [String],
   articles: [ObjectId],
   current_location: String // should we use string (cities names) or lat/long {key: Number}?
