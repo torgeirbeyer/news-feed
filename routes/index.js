@@ -6,11 +6,12 @@ const ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 const User = require("../models/user");
 const requestToken = require("../services/twitterService").requestToken;
 const queryApi = require("../services/twitterService").queryApi;
+const bearerQueryApi = require("../services/twitterService").bearerQueryApi;
 const Article = require("../services/twitterService");
+let accessToken = null;
 
 /* GET home page. */
 router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
-  const userId = req.query.id;
   res.render("index", {
     title: "Your News Feed",
     user: req.user,
@@ -21,18 +22,37 @@ router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
 router.post("/", ensureLoggedIn("auth/login"), (req, res, next) => {
   const lat = req.body.userlat;
   const lng = req.body.userlng;
-  console.log(lat, lng);
-  queryApi(req.user.token, req.user.tokenSecret, lat, lng, (err, results) => {
-    if (err) {
-      return next(err);
-    }
-    console.log(results.statuses[0].user.name);
-    res.render("index", {
-      title: "Your News Feed",
-      user: req.user,
-      results: results
+  if (!req.body.twitterId) {
+    queryApi(req.user.token, req.user.tokenSecret, lat, lng, (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      console.log(results.statuses[0].user.name);
+      res.render("index", {
+        title: "Your News Feed",
+        user: req.user,
+        results: results
+      });
     });
-  });
+  } else {
+    requestToken(function(err, resp, body) {
+      if (err) {
+        throw (err);
+      }
+      accessToken = body; // the bearer token...
+    });
+    queryApi(accessToken, lat, lng, (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      console.log(results.statuses[0].user.name);
+      res.render("index", {
+        title: "Your News Feed",
+        user: req.user,
+        results: results
+      });
+    });
+  }
 });
 
 router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {

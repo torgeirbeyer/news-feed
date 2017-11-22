@@ -2,6 +2,19 @@
 
 const Twitter = require("twitter");
 
+function requestToken(cb) {
+  const url = "https://api.twitter.com/oauth2/token";
+  R({ url: url,
+    method: "POST",
+    headers: {
+      "Authorization": "Basic " + credentials,
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+    },
+    body: "grant_type=client_credentials"
+
+  }, cb);
+}
+
 function queryApi(userToken, userSecret, lat, lng, cb) {
   const key = process.env.TWITTER_CONSUMER_KEY;
   const secret = process.env.TWITTER_CONSUMER_SECRET;
@@ -15,17 +28,31 @@ function queryApi(userToken, userSecret, lat, lng, cb) {
 
   const geocode = `${lat},${lng},10km`;
 
-<<<<<<< HEAD
-  const params = {q: "%23BreakingNews OR %23technews", geocode: geocode};
-=======
   const params = {q: "%23BreakingNews", count: 10, geocode: geocode};
->>>>>>> bf0e8514e7e00dba3421da4f159ad3aaa083d30b
   client.get("search/tweets", params, (err, tweets, response) => {
     cb(err, tweets);
   });
 }
 
+function bearerQueryApi(accessToken, lat, lng, cb) {
+  const key = process.env.TWITTER_CONSUMER_KEY;
+  const secret = process.env.TWITTER_CONSUMER_SECRET;
+
+  const client = new Twitter({
+    consumer_key: key,
+    consumer_secret: secret,
+    accessToken: accessToken
+  });
+
+  const geocode = `${lat},${lng},10km`;
+
+  const params = {q: "%23BreakingNews", count: 10, geocode: geocode};
+  client.get("search/tweets", params, (err, tweets, response) => {
+    cb(err, tweets);
+  });
+}
 
 module.exports = {
-  queryApi
+  queryApi: queryApi,
+  bearerQueryApi: bearerQueryApi
 };
