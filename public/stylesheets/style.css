@@ -79,17 +79,17 @@ button:focus, input:focus {
 
 
 /* NAVBAR */
-.navbar {
+/* .navbar {
   display: flex;
   justify-content: flex-end;
-  height: 8vh;
+  height: 8vh; */
   /* position: fixed; */
-  z-index: 10;
+  /* z-index: 10;
   background-color: inherit;
   width: 100vw;
   border-bottom: 1px solid white;
-}
-.navlinks {
+} */
+/* .navlinks {
   list-style: none;
   display: flex;
   justify-content: space-around;
@@ -99,8 +99,15 @@ button:focus, input:focus {
   padding-right: 5%;
   text-decoration: none; 
   color: black; 
-}
+} */
 /* LANDING PAGE */
+
+/* -- header -- */
+.homepage-header {
+  color: black;
+  text-align: center;
+  height: 7vh;
+}
 .map {
   display: flex;
   justify-content: center;
@@ -109,7 +116,7 @@ button:focus, input:focus {
 }
 #map {
   margin-top: 8vh;
-  height: 60vh;
+  height: 35vh;
   width: 100vw;
   margin: 0 auto;
 }

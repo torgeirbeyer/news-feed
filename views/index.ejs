@@ -1,19 +1,4 @@
-<% if (typeof user !== "undefined") { %>
-  <div class="navbar">
-    <ul class="navlinks" id="nav">
-      <li>
-        <a href="#">Preferences</a>
-      </li>
-      <li>
-        <a href="saved/?id=<%= user._id %>">Saved articles</a>
-      </li>
-      <li>
-        <a href="auth/logout">Log Out</a>
-      </li>
-    </ul>
-    <i class="fa fa-bars" id="hamburger" aria-hidden="true"></i>
-  </div>
-<% } %>
+<h4 class="homepage-header">Home</h4>
 <div class="map">
   <form class="search-input" id="search-input">
         <input id="pac-input" class="controls" type="text" placeholder="Search">
@@ -24,6 +9,13 @@
   <input type="hidden" id="user-lat" name="userlat">
   <input type="hidden" id="user-lng" name="userlng">
 </form>
+
+<footer class="footer">
+  <img src="/images/home_icon_active.png" alt="">
+  <img src="/images/star_inactive.png" alt="">
+  <img src="/images/settings_inactive.png" alt="">
+  <img src="/images/logout_inactive.png" alt="">
+</footer>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGotWDrwHvXMsAajopiAqXCcWmIlVk9s&libraries=places"></script>
