@@ -23,6 +23,7 @@ function main() {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
+
           getTwitterApiInfo(userLocation.lat, userLocation.lng);
 
           // Center map with user location

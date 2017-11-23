@@ -1,19 +1,43 @@
 "use strict";
 
-function insertListItem(tweet) {
-  const element = document.createElement("ul");
+let tweetsTotal = null;
 
-  // list;
+function insertListItem(tweet) {
+  console.log(tweet);
+  const element = document.createElement("li");
+  element.innerHTML =
+  `
+  <h4>${tweet.user.name}</h4>
+  <p>${tweet.text}</p>
+  <p>${tweet.created_at}</p>
+  <p>${tweet.lang}</p>
+  `;
+
+  return element;
 }
 
 function createTweets(response) {
   const tweets = response.data.results;
+  // console.log(tweets[0]);
+  const oldContainer = document.getElementsByClassName("tweets");
   const body = document.body;
+
+  // remove any previous created twitter-container
+  if (oldContainer[0] !== undefined) {
+    body.removeChild(oldContainer[0]);
+  }
+  // create a new twitter container
   const container = document.createElement("div");
   body.appendChild(container);
   container.setAttribute("class", "tweets");
+
+  // create unordered list
   const list = document.createElement("ul");
   list.setAttribute("class", "tweets-list");
+  container.appendChild(list);
+
+  // add list of tweets
+  tweetsTotal = tweets.length;
   for (let ix = 0; ix < tweets.length; ix++) {
     list.appendChild(insertListItem(tweets[ix]));
   }
@@ -25,7 +49,7 @@ function getTwitterApiInfo(lat, lng) {
       lat: lat,
       lng: lng
     })
-    .then(response => console.log(JSON.stringify(response)))
+    .then(response => createTweets(response))
     .catch(error => console.log(error));
 }
 
