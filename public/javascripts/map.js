@@ -19,7 +19,7 @@ function main() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
-          const userLocation = {
+          userLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
@@ -50,7 +50,6 @@ function main() {
             center: {lat: 41, lng: 2}
           }
           );
-          initializeSearch();
         }
       );
       // if browser not geolocation compatible
@@ -60,8 +59,8 @@ function main() {
         center: {lat: 41, lng: 2}
       }
       );
-      initializeSearch();
     }
+    initializeSearch();
   }
 
   function initializeSearch() {
@@ -80,6 +79,7 @@ function main() {
       if (places.length === 0) {
         return;
       }
+
       markers.forEach(function(marker) {
         marker.setMap(null);
         // const latLng = marker.getPosition();
@@ -97,21 +97,33 @@ function main() {
         }
 
 
+        const newLocation = {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng()
+        };
 
         markers.push(
           new google.maps.Marker({
             map: map,
             title: place.name,
-            position: place.geometry.location
+            position: newLocation
+            // position: place.geometry.location
           })
         );
 
+        tweetMarkers.push(
+          new google.maps.Marker({
+            position: {
+              lat: newLocation.lat + ((Math.random() - 0.5) / 5),
+              lng: newLocation.lng + ((Math.random() - 0.5) / 5)
+            },
+            map: map
+          })
+        );
+        console.log(tweetMarkers);
 
 
-        const newLocation = {
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng()
-        };
+
 
         document.getElementById("user-lat").value = newLocation.lat;
         document.getElementById("user-lng").value = newLocation.lng;
@@ -139,7 +151,7 @@ function main() {
 
   // }
   startMap();
-  initializeSearch();
+  // initializeSearch();
   // initGeoLocation();
 }
 

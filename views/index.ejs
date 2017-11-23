@@ -21,8 +21,8 @@
   <div id="map"></div>
 </div>
 <form action="/" method="POST" id="myform">
-  Lat <input type="hidden" id="user-lat" name="userlat">
-  Long <input type="hidden" id="user-lng" name="userlng">
+  <input type="hidden" id="user-lat" name="userlat">
+  <input type="hidden" id="user-lng" name="userlng">
 </form>
 
 <% if(results){ %>
@@ -33,11 +33,13 @@
       <h4><%= results[ix].user.name %></h4>
       <p><%= results[ix].text %></p>
       <p><%= results[ix].created_at %></p>
-      <p><a href="<%= results[ix].entities.urls[1].url %>">Go to tweet</a></p>
+      
     </li>
     <% } %>
   </ul>
   <% } %>
+
+  <pre><%= JSON.stringify(results, null, 2) %></pre>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGotWDrwHvXMsAajopiAqXCcWmIlVk9s&libraries=places"></script>
