@@ -23,7 +23,7 @@ function main() {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
-
+          getTwitterApiInfo(userLocation.lat, userLocation.lng);
 
           // Center map with user location
           map.setCenter(userLocation);
@@ -80,6 +80,7 @@ function main() {
       if (places.length === 0) {
         return;
       }
+
       markers.forEach(function(marker) {
         marker.setMap(null);
         // const latLng = marker.getPosition();
@@ -92,7 +93,7 @@ function main() {
       const bounds = new google.maps.LatLngBounds();
       places.forEach(function(place) {
         if (!place.geometry) {
-          console.log("Returned place contains no geometry");
+          // console.log("Returned place contains no geometry");
           return;
         }
 
@@ -113,15 +114,17 @@ function main() {
           lng: place.geometry.location.lng()
         };
 
+        getTwitterApiInfo(newLocation.lat, newLocation.lng);
+
         document.getElementById("user-lat").value = newLocation.lat;
         document.getElementById("user-lng").value = newLocation.lng;
-        console.log(place);
+        // console.log(place);
 
-        // Submit info from forms to the back-end
+        /* // Submit info from forms to the back-end
         const latLong = document.getElementById("myform");
         // const searchInput = document.getElementById("search-input");
         latLong.submit();
-        // searchInput.submit();
+        // searchInput.submit(); */
 
         if (place.geometry.viewport) {
         // Only geocodes have viewport.
