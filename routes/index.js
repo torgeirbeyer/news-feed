@@ -22,12 +22,13 @@ router.get("/", ensureLoggedIn("auth/login"), (req, res, next) => {
 router.post("/", ensureLoggedIn("auth/login"), (req, res, next) => {
   const lat = req.body.lat;
   const lng = req.body.lng;
+  const city = req.body.city;
   if (!req.body.twitterId) {
-    queryApi(req.user.token, req.user.tokenSecret, lat, lng, (err, results) => {
+    queryApi(req.user.token, req.user.tokenSecret, lat, lng, city, (err, results) => {
       if (err) {
         return next(err);
       }
-      console.log(results.statuses[0].user.name);
+      // console.log(results.statuses);
       res.send({
         results: results.statuses
       });
@@ -39,7 +40,7 @@ router.post("/", ensureLoggedIn("auth/login"), (req, res, next) => {
       }
       accessToken = body; // the bearer token...
     });
-    bearerQueryApi(accessToken, lat, lng, (err, results) => {
+    bearerQueryApi(accessToken, lat, lng, city, (err, results) => {
       if (err) {
         return next(err);
       }

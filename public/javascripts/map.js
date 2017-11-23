@@ -2,6 +2,7 @@ function main() {
   let map;
   let markers = [];
   let tweetMarkers = [];
+  let city = "Barcelona"; // default value for when map loads 1st time
 
   // function addTweetMarker(lat, lng)
 
@@ -24,7 +25,7 @@ function main() {
             lng: position.coords.longitude
           };
 
-          getTwitterApiInfo(userLocation.lat, userLocation.lng);
+          getTwitterApiInfo(userLocation.lat, userLocation.lng, city);
 
           // Center map with user location
           map.setCenter(userLocation);
@@ -77,7 +78,7 @@ function main() {
     // -- LISTENER ON SEARCH INPUT --
     searchBox.addListener("places_changed", function() {
       const places = searchBox.getPlaces();
-
+      city = places[0].address_components[0].long_name;
       if (places.length === 0) {
         return;
       }
@@ -134,7 +135,7 @@ function main() {
         }
 
         // -- ADDING TWEETS TO FRONTEND
-        getTwitterApiInfo(newLocation.lat, newLocation.lng);
+        getTwitterApiInfo(newLocation.lat, newLocation.lng, city);
         addTweetMarker();
         document.getElementById("user-lat").value = newLocation.lat;
         document.getElementById("user-lng").value = newLocation.lng;
