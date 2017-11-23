@@ -302,10 +302,12 @@ body {
 
 
 /* FOR OTHER SCREENS */
-@media (min-width: 1000px) {
-  #map {
-    width: 80vw;
+@media (min-width: 850px) {
+  .tweets {
+    max-width: 80vw;
     margin: 0 auto;
   }
+
+
   
 }
