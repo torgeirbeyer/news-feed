@@ -15,12 +15,12 @@
   </div>
 <% } %>
 <div class="map">
-  <form action="/" method="POST" class="search-input" id="search-input">
+  <form class="search-input" id="search-input">
         <input id="pac-input" class="controls" type="text" placeholder="Search">
   </form>
   <div id="map"></div>
 </div>
-<form action="/" method="POST" id="myform">
+<form id="myform">
   <input type="hidden" id="user-lat" name="userlat">
   <input type="hidden" id="user-lng" name="userlng">
 </form>
@@ -46,6 +46,4 @@
 </script>
 <script type="text/javascript" src="/javascripts/map.js"></script>
 <script type="text/javascript" src="/javascripts/queryTwitter.js"></script>
-<script type="text/javascript">
-  var tweets = <%- JSON.stringify(results) %>;
-</script>
+

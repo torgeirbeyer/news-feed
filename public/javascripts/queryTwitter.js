@@ -1,33 +1,36 @@
 "use strict";
-/*
-function getTwitterApiInfo(place) {
+
+function insertListItem(tweet) {
+  const element = document.createElement("ul");
+
+  // list;
+}
+
+function createTweets(response) {
+  const tweets = response.data.results;
+  const body = document.body;
+  const container = document.createElement("div");
+  body.appendChild(container);
+  container.setAttribute("class", "tweets");
+  const list = document.createElement("ul");
+  list.setAttribute("class", "tweets-list");
+  for (let ix = 0; ix < tweets.length; ix++) {
+    list.appendChild(insertListItem(tweets[ix]));
+  }
+}
+
+function getTwitterApiInfo(lat, lng) {
   axios
-    .get(
-      `http://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`
-    )
-    .then(response => console.log(response))
+    .post("/", {
+      lat: lat,
+      lng: lng
+    })
+    .then(response => console.log(JSON.stringify(response)))
     .catch(error => console.log(error));
-}; */
+}
 
 // /* const getQuery = document.getElementById("pac-input");
 // getQuery.addEventListener("click", () => {
 //   const city = document.getElementById("pac-input").value;
 //   getTwitterApiInfo(city);
 // }); */
-
-// console.log("blaa");
-
-// const searchBoxContainer = document.getElementById("pac-input");
-
-// searchBoxContainer.addListener("places_changed", () => {
-//   console.log("blee");
-//   const myForm = document.getElementById("myform");
-//   myForm.submit();
-//   const places = searchBoxContainer.getPlaces();
-
-/*   if (places.length === 0) {
-    return;
-  } else {
-    getTwitterApiInfo(places);
-  } */
-// });
