@@ -1,7 +1,7 @@
 function main() {
   let map;
   let markers = [];
-  const tweetMarkers = [];
+  let tweetMarkers = [];
 
   // function addTweetMarker(lat, lng)
 
@@ -74,6 +74,7 @@ function main() {
       searchBox.setBounds(map.getBounds());
     });
 
+    // -- LISTENER ON SEARCH INPUT --
     searchBox.addListener("places_changed", function() {
       const places = searchBox.getPlaces();
 
@@ -81,10 +82,9 @@ function main() {
         return;
       }
 
-      markers.forEach(function(marker) {
+      // -- CLEAR USER LOCATION MARKERS
+      markers.forEach((marker) => {
         marker.setMap(null);
-        // const latLng = marker.getPosition();
-        // console.log(latLng);
       });
 
 
@@ -97,37 +97,45 @@ function main() {
           return;
         }
 
-
+        // -- FINDING THE NEW LOCATION OF THE USER
         const newLocation = {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng()
         };
 
+        // -- ADDING NEW MARKER TO USERLOCATION
         markers.push(
           new google.maps.Marker({
             map: map,
             title: place.name,
             position: newLocation
-            // position: place.geometry.location
           })
         );
 
-        tweetMarkers.push(
-          new google.maps.Marker({
-            position: {
-              lat: newLocation.lat + ((Math.random() - 0.5) / 5),
-              lng: newLocation.lng + ((Math.random() - 0.5) / 5)
-            },
-            map: map
-          })
-        );
-        console.log(tweetMarkers);
+        // -- REMOVE ALL TWEET MARKERS ON NEW SEARCH
+        tweetMarkers.forEach((tweetMarker) => {
+          tweetMarker.setMap(null);
+        });
 
+        tweetMarkers = [];
 
+        // -- TO ADD NEW TWEETMARKERS
+        // @todo find out how to call this the with the same length as the tweets received
+        function addTweetMarker() {
+          tweetMarkers.push(
+            new google.maps.Marker({
+              position: {
+                lat: newLocation.lat + ((Math.random() - 0.5) / 10),
+                lng: newLocation.lng + ((Math.random() - 0.5) / 10)
+              },
+              map: map
+            })
+          );
+        }
 
-
+        // -- ADDING TWEETS TO FRONTEND
         getTwitterApiInfo(newLocation.lat, newLocation.lng);
-
+        addTweetMarker();
         document.getElementById("user-lat").value = newLocation.lat;
         document.getElementById("user-lng").value = newLocation.lng;
         // console.log(place);
@@ -138,6 +146,8 @@ function main() {
         latLong.submit();
         // searchInput.submit(); */
 
+
+        // -- DONT REALLY KNOW WHAT THIS DOES
         if (place.geometry.viewport) {
         // Only geocodes have viewport.
           bounds.union(place.geometry.viewport);
@@ -149,13 +159,7 @@ function main() {
     });
   }
 
-  // function initGeoLocation() {
-  // GET POSITION FROM IP
-
-  // }
   startMap();
-  // initializeSearch();
-  // initGeoLocation();
 }
 
 window.addEventListener("load", main);

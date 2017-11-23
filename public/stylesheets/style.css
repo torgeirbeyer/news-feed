@@ -130,10 +130,7 @@ button:focus, input:focus {
   margin: 1.5vh auto;
 }
 
-
-
-
-
+/* GOOGLE MAPS DEFAULT STYLING */
 #description {
   font-family: Roboto;
   font-size: 15px;
@@ -205,6 +202,8 @@ button:focus, input:focus {
   width: 345px;
 }
 
+
+/* FOR OTHER SCREENS */
 @media (min-width: 1000px) {
   #map {
     width: 80vw;

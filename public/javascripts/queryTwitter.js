@@ -46,6 +46,10 @@ function getTwitterApiInfo(lat, lng) {
       lat: lat,
       lng: lng
     })
+<<<<<<< HEAD
+    .then(response => console.log(JSON.stringify(response, null, 2)))
+=======
     .then(response => createTweets(response))
+>>>>>>> cf25c1a6857bd29d23b73444d8df8496b3e70de3
     .catch(error => console.log(error));
 }
