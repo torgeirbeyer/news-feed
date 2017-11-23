@@ -16,7 +16,8 @@ function insertListItem(tweet) {
   return element;
 }
 
-function createTweets(response) {
+function createTweets(response, cb, lat, lng) {
+  const tweets = response.data.results;
   const oldContainer = document.getElementsByClassName("tweets");
   const body = document.body;
 
@@ -29,8 +30,6 @@ function createTweets(response) {
   const container = document.createElement("div");
   body.appendChild(container);
   container.setAttribute("class", "tweets");
-
-  const tweets = response.data.results;
 
   if (tweets.length >= 1) {
     // create unordered list
@@ -46,15 +45,16 @@ function createTweets(response) {
   } else {
     container.innerHTML = "<h2> No Tweets found at this location<h2>";
   }
+  cb(lat, lng);
 }
 
-function getTwitterApiInfo(lat, lng, city) {
+function getTwitterApiInfo(lat, lng, city, cb) {
   axios
     .post("/", {
       lat: lat,
       lng: lng,
       city: city
     })
-    .then(response => createTweets(response))
+    .then(response => createTweets(response, cb, lat, lng))
     .catch(error => console.log(error));
 }

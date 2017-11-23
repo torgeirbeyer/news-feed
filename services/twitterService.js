@@ -27,7 +27,7 @@ function queryApi(userToken, userSecret, lat, lng, city, cb) {
   });
 
   const geocode = `${lat},${lng},10km`;
-  const query = `%23News+OR+%23${city}`;
+  const query = `%23BreakingNews+OR+%23${city}`;
 
   const params = {q: query, count: 10, geocode: geocode};
   client.get("search/tweets", params, (err, tweets, response) => {
@@ -46,7 +46,7 @@ function bearerQueryApi(accessToken, lat, lng, city, cb) {
   });
 
   const geocode = `${lat},${lng},10km`;
-  const query = `%23News+OR+%23${city}`;
+  const query = `%23BreakingNews+OR+%23${city}`;
 
   const params = {q: query, count: 10, geocode: geocode};
   client.get("search/tweets", params, (err, tweets, response) => {
