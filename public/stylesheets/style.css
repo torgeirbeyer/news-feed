@@ -14,16 +14,17 @@ html {
 }
 
 body {
-  background-color: #d2f8ff;
+  background-color: #4742B8;
   font-family: "Source Sans Pro", sans-serif;
+  height: 100vh;
 }
 
 a {
-  color: #00b7ff;
-}
+  color:inherit;
+  text-decoration: none;
+ }
 
 h2 {
-  margin: 15vh auto 5vh;
   text-align: center;
   letter-spacing: 2px;
   font-size: 2.5rem;
@@ -31,9 +32,76 @@ h2 {
 }
 
 /* LOGIN & SIGNUP */
+.main-container {
+  background-color: #4742B8;
+  height: 100vh;
+}
+
+.top-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 3vh;
+  margin: 8% 0;
+}
+
+.app-logo-name {
+  background-image: url("../images/PNG/world_map.png");
+  background-size: contain;
+  font-family: DamascusBold;
+  width: 80%;
+  height: 20vh;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  font-size: 20px;
+  color: white;
+  letter-spacing: -0.4px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+}
+
+.login-with-twitter{
+  display: flex;
+  justify-content: center;
+  padding: 5% 0 10% 0;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.twitter-logo {
+  background-color: #1b95e0;
+  border: white solid 1px;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  padding: 4px 12px;
+}
+
+.page-split {
+  color: #D2DFEE;
+  text-align: center;
+}
+
+.login-user {
+  margin: 5vh 0;
+}
+
+.login-button {
+  font-family: Roboto-Bold;
+  font-size: 18px;
+  color: white;
+  background-color: #1b95e0;
+  width: 100%;
+  text-align: center;
+  border-radius: 0 5px 5px 0;
+  border: 1px white solid;
+  padding: 12px 0;
+}
+
 .account-message, .error-message {
   text-align: center;
   font-size: 1.3rem;
+  color: #99B6D8;
 }
 .form {
   display: flex;
@@ -44,17 +112,17 @@ h2 {
 }
 
 .button {
-	box-shadow:inset 0px 1px 3px 0px #91b8b3;
-	background-color:#768d87;
-	border-radius:5px;
-	border:1px solid #fff;
-	display:inline-block;
-	color:#fff;
-	font-family:Arial;
-  padding:1rem 2rem;
-  font-size: 1rem;
-	text-decoration:none;
-	text-shadow:0px -1px 0px #2b665e;
+	background-color: white;
+  border-radius: 3px;
+  border: 1px solid white;
+  display: inline-block;
+  color: #4742B8;
+  font-family: Roboto-Bold;
+  text-decoration: none;
+  margin: 1.5vh auto;
+  font-size: 1.3rem;
+  width: 70%;
+  height: 2.6rem;
 }
 .button:hover {
 	background-color:#6c7c7c;
@@ -64,12 +132,19 @@ button:focus, input:focus {
 }
 
 .text-input {
-  margin: 5vh auto;
-  font-size: 1.7rem;
-  border: 3px solid #fff;
+  margin: 1.5vh auto;
+  font-size: 1.3rem;
+  border: 3px solid #d2dfee;
   border-radius: 5px;
   background-color: inherit;
-  height: 3.2rem;
+  height: 2.6rem;
+  background-color: #d2dfee;
+  color: #99B6D8;
+  width: 70%;
+}
+
+input[type=text], input[type=password] {
+  color: rgb(108, 130, 155);
 }
 
 .text {
