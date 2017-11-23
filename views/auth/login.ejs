@@ -1,25 +1,40 @@
-<h2>Log In</h2>
-<form class="form" action="/auth/login" method="POST">
-  <label class="text" for="email">Email</label>
-  <input class="text-input" id="email" type="text" name="email">
+<div class="main-container">
+  <div class="top-container">
+    <div class="app-logo-name">
+      <img src="../images/PNG/location.png" style="height: 25px">
+      <strong>News Feed</strong>
+    </div>
+  </div>
 
-  <label class="text" for="password">Password</label>
-  <input class="text-input" id="password" type="password" name="password">
+  <div class="login-with-twitter">
+    <div class="twitter-logo">
+       <a href="/auth/twitter"><img src="../images/PNG/bird2.png" style="height: 32px"></a>
+    </div>
+    <div class="login-button"><strong><a href="/auth/twitter">Login With Twitter</a></strong></div>
+  </div>
 
-  <button class="button text" type="submit">
-    Login
-  </button>
-</form>
+  <div class="page-split">
+      &#8212&#8212&#8212&#8212&#8212&#8212&#8212&nbsp&nbsp&nbsp&nbsp&nbsp&nbspOR&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&#8212&#8212&#8212&#8212&#8212&#8212&#8212
+  </div>
 
-<a href="/auth/twitter">Login With Twitter</a>
+  <div class="login-user">
+    <form class="form" action="/auth/login" method="POST">
+      <input class="text-input" id="email" type="text" name="email" placeholder="Email">
+      <input class="text-input" id="password" type="password" name="password" placeholder="Password">
 
-<br><br>
-<% if (typeof errorMessage !== "undefined") { %>
-  <div class="error-message"><%= errorMessage %></div>
-<% } %>
-<br><br>
-
-<p class="account-message">
-  Do not have an account yet?
-  <a href="signup">Sign Up</a>
-</p>
+      <button class="button text" id="login-bt" type="submit">
+        <strong>Login</strong>
+      </button>
+    </form>
+  </div>
+  
+  <% if (typeof errorMessage !== "undefined") { %>
+    <div class="error-message"><%= errorMessage %></div> 
+  <% } %>
+  
+  <div class="botton-container">
+    <p class="account-message">
+      <a href="signup"><u>Sign Up</u></a>
+    </p>
+  </div>
+</div>
