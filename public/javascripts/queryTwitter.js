@@ -3,7 +3,6 @@
 let tweetsTotal = null;
 
 function insertListItem(tweet) {
-  console.log(tweet);
   const element = document.createElement("li");
   element.innerHTML =
   `
@@ -18,7 +17,6 @@ function insertListItem(tweet) {
 
 function createTweets(response) {
   const tweets = response.data.results;
-  // console.log(tweets[0]);
   const oldContainer = document.getElementsByClassName("tweets");
   const body = document.body;
 
@@ -52,9 +50,3 @@ function getTwitterApiInfo(lat, lng) {
     .then(response => createTweets(response))
     .catch(error => console.log(error));
 }
-
-// /* const getQuery = document.getElementById("pac-input");
-// getQuery.addEventListener("click", () => {
-//   const city = document.getElementById("pac-input").value;
-//   getTwitterApiInfo(city);
-// }); */
