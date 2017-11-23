@@ -7,16 +7,20 @@ function insertListItem(tweet) {
   // console.log(tweet);
   element.innerHTML =
   `
-  <img src="${tweet.user.profile_image_url}">$
-  <h4>${tweet.user.name}</h4>
-  <p>${tweet.text}</p>
-  <p>${tweet.created_at}</p>
+  <div class="top-card">
+    <img src="${tweet.user.profile_image_url}">
+    <div>
+      <h4>${tweet.user.name}</h4>
+      <p class="date">${tweet.created_at}</p>
+    </div>
+  </div>
+  <p class="text">${tweet.text}</p>
   `;
 
   return element;
 }
 
-function createTweets(response, cb, lat, lng) {
+function createTweets(response, cb, lat, lng, city) {
   const tweets = response.data.results;
   const oldContainer = document.getElementsByClassName("tweets");
   const body = document.body;
@@ -30,6 +34,7 @@ function createTweets(response, cb, lat, lng) {
   const container = document.createElement("div");
   body.appendChild(container);
   container.setAttribute("class", "tweets");
+  container.innerHTML = `<h4 class="happening">Happening in ${city}</h4>`;
 
   if (tweets.length >= 1) {
     // create unordered list
@@ -55,6 +60,6 @@ function getTwitterApiInfo(lat, lng, city, cb) {
       lng: lng,
       city: city
     })
-    .then(response => createTweets(response, cb, lat, lng))
+    .then(response => createTweets(response, cb, lat, lng, city))
     .catch(error => console.log(error));
 }
