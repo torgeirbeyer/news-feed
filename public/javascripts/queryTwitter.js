@@ -9,7 +9,6 @@ function insertListItem(tweet) {
   <h4>${tweet.user.name}</h4>
   <p>${tweet.text}</p>
   <p>${tweet.created_at}</p>
-  <p>${tweet.lang}</p>
   `;
 
   return element;
