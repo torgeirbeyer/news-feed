@@ -1,6 +1,6 @@
 <% if (typeof user !== "undefined") { %>
   <div class="navbar">
-    <ul class="navlinks">
+    <ul class="navlinks" id="nav">
       <li>
         <a href="#">Preferences</a>
       </li>
@@ -10,8 +10,8 @@
       <li>
         <a href="auth/logout">Log Out</a>
       </li>
-      <i class="fa fa-bars" aria-hidden="true"></i>
     </ul>
+    <i class="fa fa-bars" id="hamburger" aria-hidden="true"></i>
   </div>
 <% } %>
 <div class="map">
@@ -24,14 +24,11 @@
   <input type="hidden" id="user-lat" name="userlat">
   <input type="hidden" id="user-lng" name="userlng">
 </form>
-<<<<<<< HEAD
-
-=======
->>>>>>> cf25c1a6857bd29d23b73444d8df8496b3e70de3
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGotWDrwHvXMsAajopiAqXCcWmIlVk9s&libraries=places"></script>
 </script>
 <script type="text/javascript" src="/javascripts/map.js"></script>
 <script type="text/javascript" src="/javascripts/queryTwitter.js"></script>
+<script type="text/javascript" src="/javascripts/main.js"></script>
 

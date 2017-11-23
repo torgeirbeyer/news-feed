@@ -9,13 +9,12 @@ function insertListItem(tweet) {
   <h4>${tweet.user.name}</h4>
   <p>${tweet.text}</p>
   <p>${tweet.created_at}</p>
-  <p>${tweet.lang}</p>
   `;
 
   return element;
 }
 
-function createTweets(response) {
+function createTweets(response, cb, lat, lng) {
   const tweets = response.data.results;
   const oldContainer = document.getElementsByClassName("tweets");
   const body = document.body;
@@ -39,18 +38,15 @@ function createTweets(response) {
   for (let ix = 0; ix < tweets.length; ix++) {
     list.appendChild(insertListItem(tweets[ix]));
   }
+  cb(lat, lng);
 }
 
-function getTwitterApiInfo(lat, lng) {
+function getTwitterApiInfo(lat, lng, cb) {
   axios
     .post("/", {
       lat: lat,
       lng: lng
     })
-<<<<<<< HEAD
-    .then(response => console.log(JSON.stringify(response, null, 2)))
-=======
-    .then(response => createTweets(response))
->>>>>>> cf25c1a6857bd29d23b73444d8df8496b3e70de3
+    .then(response => createTweets(response, cb, lat, lng))
     .catch(error => console.log(error));
 }
