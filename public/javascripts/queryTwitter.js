@@ -1,33 +1,60 @@
 "use strict";
-/*
-function getTwitterApiInfo(place) {
-  axios
-    .get(
-      `http://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`
-    )
-    .then(response => console.log(response))
-    .catch(error => console.log(error));
-}; */
 
-// /* const getQuery = document.getElementById("pac-input");
-// getQuery.addEventListener("click", () => {
-//   const city = document.getElementById("pac-input").value;
-//   getTwitterApiInfo(city);
-// }); */
+let tweetsTotal = null;
 
-// console.log("blaa");
+function insertListItem(tweet) {
+  const element = document.createElement("li");
+  // console.log(tweet);
+  element.innerHTML =
+  `
+  <img src="${tweet.user.profile_image_url}">$
+  <h4>${tweet.user.name}</h4>
+  <p>${tweet.text}</p>
+  <p>${tweet.created_at}</p>
+  `;
 
-// const searchBoxContainer = document.getElementById("pac-input");
+  return element;
+}
 
-// searchBoxContainer.addListener("places_changed", () => {
-//   console.log("blee");
-//   const myForm = document.getElementById("myform");
-//   myForm.submit();
-//   const places = searchBoxContainer.getPlaces();
+function createTweets(response, cb, lat, lng) {
+  const tweets = response.data.results;
+  const oldContainer = document.getElementsByClassName("tweets");
+  const body = document.body;
 
-/*   if (places.length === 0) {
-    return;
+  // remove any previous created twitter-container
+  if (oldContainer[0] !== undefined) {
+    body.removeChild(oldContainer[0]);
+  }
+
+  // create a new twitter container
+  const container = document.createElement("div");
+  body.appendChild(container);
+  container.setAttribute("class", "tweets");
+
+  if (tweets.length >= 1) {
+    // create unordered list
+    const list = document.createElement("ul");
+    list.setAttribute("class", "tweets-list");
+    container.appendChild(list);
+
+    // add list of tweets
+    tweetsTotal = tweets.length;
+    for (let ix = 0; ix < tweets.length; ix++) {
+      list.appendChild(insertListItem(tweets[ix]));
+    }
   } else {
-    getTwitterApiInfo(places);
-  } */
-// });
+    container.innerHTML = "<h2> No Tweets found at this location<h2>";
+  }
+  cb(lat, lng);
+}
+
+function getTwitterApiInfo(lat, lng, city, cb) {
+  axios
+    .post("/", {
+      lat: lat,
+      lng: lng,
+      city: city
+    })
+    .then(response => createTweets(response, cb, lat, lng))
+    .catch(error => console.log(error));
+}
