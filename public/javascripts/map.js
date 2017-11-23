@@ -5,6 +5,13 @@ function main() {
   let markers = [];
   let tweetMarkers = [];
   let city = "Barcelona"; // default value for when map loads 1st time
+  const pin = {
+    url: "https://camo.githubusercontent.com/e8783c1b9fc99532bedbab3b8df9ce1b03d6f70b/68747470733a2f2f7777772e6272696172636c6966662e6564752f6d656469612f3339343033372f6d61726b65722e706e67",
+    size: new google.maps.Size(71, 71),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(17, 34),
+    scaledSize: new google.maps.Size(30, 30)
+  };
 
 
   // -- ADDING MARKERS FOR EACH TWEET
@@ -16,7 +23,8 @@ function main() {
             lat: lat + ((Math.random() - 0.5) / 10),
             lng: lng + ((Math.random() - 0.5) / 10)
           },
-          map: map
+          map: map,
+          icon: pin
         })
       );
     }
@@ -24,13 +32,129 @@ function main() {
 
 
   function startMap() {
+    // STYLE MAP
+    const styledMap = new google.maps.StyledMapType(
+      [
+        {
+          "elementType": "labels.icon",
+          "stylers": [
+            {
+              "visibility": "on"
+            },
+            {
+              "weight": 1.5
+            }
+          ]
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "administrative.land_parcel",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "administrative.neighborhood",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "poi",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "road",
+          "elementType": "labels",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "road",
+          "elementType": "labels.icon",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "road.arterial",
+          "elementType": "labels",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "labels",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "road.local",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "transit",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "water",
+          "elementType": "labels.text",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        }
+      ]
+    );
     // CREATE MAP
     let userLocation;
     const mapOptions = {
-      zoom: 12,
-      center: userLocation
+      zoom: 11,
+      center: userLocation,
+      disableDefaultUI: true,
+      zoomControl: true
     };
+
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    map.mapTypes.set("styled_map", styledMap);
+    map.setMapTypeId("styled_map");
 
     // GET USER LOCATION
     if (navigator.geolocation) {
@@ -56,7 +180,8 @@ function main() {
                 lat: userLocation.lat,
                 lng: userLocation.lng
               },
-              map: map
+              map: map,
+              icon: pin
             }));
 
           const userMarker = markers[0];
@@ -124,13 +249,13 @@ function main() {
         };
 
         // -- ADDING NEW MARKER TO USERLOCATION
-        markers.push(
-          new google.maps.Marker({
-            map: map,
-            title: place.name,
-            position: newLocation
-          })
-        );
+        // markers.push(
+        //   new google.maps.Marker({
+        //     map: map,
+        //     title: place.name,
+        //     position: newLocation
+        //   })
+        // );
 
         // -- REMOVE ALL TWEET MARKERS ON NEW SEARCH
         tweetMarkers.forEach((tweetMarker) => {
