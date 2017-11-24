@@ -1,23 +1,24 @@
-<% if (typeof user !== "undefined") { %>
-    <div class="navbar">
-        <ul class="navlinks">
-            <li>
-                <a href="../">Main</a>
-            </li>
-            <li>
-                <a href="#">Preferences</a>
-            </li>
-            <li>
-                <a href="../auth/logout">Log Out</a>
-            </li>
-        </ul>
+<div class="saved-container">
+    <h4 class="homepage-header">Saved articles</h4>
+    
+    <div class="articles-container">
+        <h4 class="happening">Your saved news</h4>
     </div>
-<% } %>
-
-<h1>Saved Articles</h1>
-<div class="articles-container">
-    <pre><%=  %></pre>
-    <pre><%- JSON.stringify(articles) %></pre>
+    
+    <footer class="footer">
+        <a href="/">
+            <img src="../images/PNG/home_icon_active.png" alt="">
+        </a>
+        <a href="/saved">
+            <img src="../images/PNG/star_inactive.png" alt="">
+        </a>
+        <a href="/settings">   
+            <img src="../images/PNG/settings_inactive.png" alt="">
+        </a>
+        <a href="/auth/logout">
+            <img src="../images/PNG/logout_inactive.png" alt="">
+        </a>
+    </footer>
 </div>
 
 <script type="text/javascript" src="/javascripts/saved.js"></script>
