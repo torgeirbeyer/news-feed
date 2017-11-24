@@ -7,7 +7,7 @@ function displayNoSearch() {
   const container = document.createElement("div");
   body.appendChild(container);
   container.setAttribute("class", "tweets");
-  container.innerHTML = "<h3 class='happening' >Try searching for a place</h3>";
+  container.innerHTML = "<h3 class='happening' >Try searching for a city</h3>";
 }
 
 function insertListItem(tweet) {
