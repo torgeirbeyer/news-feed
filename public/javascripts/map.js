@@ -4,6 +4,7 @@ function main() {
   let map;
   let markers = [];
   let tweetMarkers = [];
+  let isLoading1stTime = true;
   let city = "Barcelona"; // default value for when map loads 1st time
   const pin = {
     url: "https://camo.githubusercontent.com/e8783c1b9fc99532bedbab3b8df9ce1b03d6f70b/68747470733a2f2f7777772e6272696172636c6966662e6564752f6d656469612f3339343033372f6d61726b65722e706e67",
@@ -166,9 +167,6 @@ function main() {
           };
 
           getTwitterApiInfo(userLocation.lat, userLocation.lng, city, addTweetMarker);
-          // addTweetMarker(userLocation.lat, userLocation.lng);
-
-
 
           // Center map with user location
           map.setCenter(userLocation);
@@ -206,6 +204,9 @@ function main() {
       }
       );
     }
+    if (isLoading1stTime === true) {
+      displayNoSearch();
+    }
     initializeSearch();
   }
 
@@ -221,6 +222,7 @@ function main() {
 
     // -- LISTENER ON SEARCH INPUT --
     searchBox.addListener("places_changed", function() {
+      isLoading1stTime = false;
       const places = searchBox.getPlaces();
       city = places[0].address_components[0].long_name;
       if (places.length === 0) {
