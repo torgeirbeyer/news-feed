@@ -1,6 +1,14 @@
 "use strict";
 
 let tweetsTotal = null;
+const body = document.body;
+
+function displayNoSearch() {
+  const container = document.createElement("div");
+  body.appendChild(container);
+  container.setAttribute("class", "tweets");
+  container.innerHTML = "<h3 class='happening' >Try searching for a place</h3>";
+}
 
 function insertListItem(tweet) {
   const element = document.createElement("li");
@@ -23,7 +31,6 @@ function insertListItem(tweet) {
 function createTweets(response, cb, lat, lng, city) {
   const tweets = response.data.results;
   const oldContainer = document.getElementsByClassName("tweets");
-  const body = document.body;
 
   // remove any previous created twitter-container
   if (oldContainer[0] !== undefined) {
@@ -48,7 +55,7 @@ function createTweets(response, cb, lat, lng, city) {
       list.appendChild(insertListItem(tweets[ix]));
     }
   } else {
-    container.innerHTML = "<h2> No Tweets found at this location<h2>";
+    container.innerHTML = "<h2 class='happening'> No Tweets found at this location<h2>";
   }
   cb(lat, lng);
 }
