@@ -275,6 +275,20 @@ body {
   justify-content: space-around;
   margin-bottom: 1rem;
 }
+
+.top-card .star {
+  position: relative;
+  top: -1rem;
+  right: 0rem;
+}
+
+.star:active {
+  color: blue;
+}
+
+.hidden {
+  border: none;
+}
 .tweets {
   display: flex;
   flex-direction: column;
@@ -433,6 +447,28 @@ body {
   width: 345px;
 }
 
+/* -- error and not found -- */
+.error-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto";
+  color: #D2DFEE;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 0;
+}
+
+.error-page h2, span{
+  font-family: "Roboto";
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin: 8vh;
+}
+
+span a {
+  font-family: "Roboto";
+}
 
 /* FOR OTHER SCREENS */
 @media (min-width: 850px) {
