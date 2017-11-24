@@ -10,18 +10,23 @@ function displayNoSearch() {
   container.innerHTML = "<h3 class='happening' >Try searching for a city</h3>";
 }
 
-function insertListItem(tweet) {
+function insertListItem(tweet, ix) {
   const element = document.createElement("li");
   tweet.created_at = tweet.created_at.replace(/\+(0000)/g, "");
   element.innerHTML =
   `
-  <div class="top-card">
+  <div class="top-card" id="${ix}">
     <img src="${tweet.user.profile_image_url}">
     <div>
-      <h4>${tweet.user.name}</h4>
-      <p class="date">${tweet.created_at}</p>
+    <h4>${tweet.user.name}</h4>
+    <p class="date">${tweet.created_at}</p>
     </div>
   </div>
+  <form action="" method="post">
+    <button class="hidden">
+      <img class="star" src="../images/PNG/star_inactive.png">    
+    </button>
+  </form>
   <p class="text">${tweet.text}</p>
   `;
 
@@ -52,7 +57,7 @@ function createTweets(response, cb, lat, lng, city) {
     // add list of tweets
     tweetsTotal = tweets.length;
     for (let ix = 0; ix < tweets.length; ix++) {
-      list.appendChild(insertListItem(tweets[ix]));
+      list.appendChild(insertListItem(tweets[ix], ix));
     }
   } else {
     container.innerHTML = "<h2 class='happening'> No Tweets found at this location<h2>";
