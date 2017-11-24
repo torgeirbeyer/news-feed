@@ -12,7 +12,7 @@ function displayNoSearch() {
 
 function insertListItem(tweet) {
   const element = document.createElement("li");
-  // console.log(tweet);
+  tweet.created_at = tweet.created_at.replace(/\+(0000)/g, "");
   element.innerHTML =
   `
   <div class="top-card">

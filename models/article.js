@@ -5,11 +5,9 @@ const Schema = mongoose.Schema;
 
 // http://mongoosejs.com/docs/schematypes.html
 const articleSchema = new Schema({
-  title: String,
-  URL: String,
+  text: String,
+  userName: String,
   img: String,
-  categories: [String],
-  location: String, // or lat/long {key: Number}?
   date: { type: Date, default: Date.now }
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
