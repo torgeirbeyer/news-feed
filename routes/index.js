@@ -88,4 +88,35 @@ router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {
   });
 });
 
+router.post("/saved", function(req, res, next) {
+  const profileImg = req.body.profileImg;
+  const userName = req.body.userName;
+  const date = req.body.date;
+  const text = text;
+  const userId = req.user.id;
+  const newTweet = Article({
+    img: profileImg,
+    userName: userName,
+    date: date,
+    text: text
+  });
+  newTweet.save((err) => {
+    if (err) {
+      next(err);
+    }
+  });
+  Article.find({date: req.body.date}, (error, tweet) => {
+    if (error) {
+      next(err);
+    }
+    User.findOneAndUpdate({_id: userId}, {"$push": {articles: tweet._id}}, (err, user) => {
+      if (err) {
+        return done(err);
+      } else {
+        return done(null, user);
+      }
+    });
+  });
+});
+
 module.exports = router;

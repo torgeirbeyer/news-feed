@@ -8,7 +8,7 @@ const articleSchema = new Schema({
   text: String,
   userName: String,
   img: String,
-  date: { type: Date, default: Date.now }
+  date: String
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

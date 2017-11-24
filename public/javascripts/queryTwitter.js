@@ -70,3 +70,15 @@ function getTwitterApiInfo(lat, lng, city, cb) {
     .then(response => createTweets(response, cb, lat, lng, city))
     .catch(error => console.log(error));
 }
+
+function saveTweet(profileImg, userName, date, text) {
+  axios
+    .post("/saved", {
+      profileImg: profileImg,
+      userName: userName,
+      date: date,
+      text: text
+    })
+    .then(response => console.log("tweet saved"))
+    .catch(error => console.log(error));
+}
