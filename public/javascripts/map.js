@@ -193,7 +193,9 @@ function main() {
         function() {
           map = new google.maps.Map(document.getElementById("map"), {
             zoom: 6,
-            center: {lat: 41, lng: 2}
+            center: {lat: 41, lng: 2},
+            disableDefaultUI: true,
+            zoomControl: true
           }
           );
         }
@@ -202,7 +204,9 @@ function main() {
     } else {
       map = new google.maps.Map(document.getElementById("map"), {
         zoom: 6,
-        center: {lat: 41, lng: 2}
+        center: {lat: 41, lng: 2},
+        disableDefaultUI: true,
+        zoomControl: true
       }
       );
     }

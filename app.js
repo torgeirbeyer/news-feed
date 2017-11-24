@@ -30,7 +30,7 @@ app.use(flash());
 
 // -- CONNECT TO DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/news-feed", {
+mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
   useMongoClient: true

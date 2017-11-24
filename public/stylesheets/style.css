@@ -76,9 +76,25 @@ h2 {
 }
 
 .page-split {
-  color: #D2DFEE;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #D2DFEE;
+  width: 75vw;
+  margin: 2vh auto;
+  max-height: 2px;
+  /* color: #D2DFEE;
   text-align: center;
-  font-weight: 300;
+  font-weight: 300; */
+}
+
+.page-split span {
+  background-color: #4742B8;
+  color: #D2DFEE;
+  width: 10vh;
+  margin-top: -1.1vh;
+  text-align: center;
+  position: absolute;
+  z-index: 10;
 }
 
 
