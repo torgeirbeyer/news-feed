@@ -55,7 +55,7 @@ router.post("/", ensureLoggedIn("auth/login"), (req, res, next) => {
 });
 
 router.get("/saved", ensureLoggedIn("../auth/login"), (req, res, next) => {
-  const userId = req.query.id;
+  const userId = req.user.id;
   // find user correspondent to the passed ID
   User.findById(userId, (err, user) => {
     if (err) {

@@ -30,9 +30,11 @@ h2 {
 
 /* LOGIN & SIGNUP */
 
+/* -- login -- */
 .top-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   text-align: center;
   margin-top: 3vh;
   margin: 8% 0;
@@ -41,24 +43,27 @@ h2 {
 .app-logo-name {
   background-image: url("../images/PNG/world_map.png");
   background-size: contain;
-  font-family: DamascusBold;
+  /* background-repeat: no-repeat; */
+  font-family: "Roboto";
+  font-weight: 400;
   width: 80%;
   height: 20vh;
   padding-top: 60px;
   padding-bottom: 60px;
   font-size: 20px;
   color: white;
-  letter-spacing: -0.4px;
+  letter-spacing: 0.6px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
+  
 }
 
 .login-with-twitter{
   display: flex;
   justify-content: center;
   padding: 5% 0 10% 0;
-  width: 70%;
+  width: 75vw;
   margin: 0 auto;
 }
 
@@ -73,15 +78,20 @@ h2 {
 .page-split {
   color: #D2DFEE;
   text-align: center;
+  font-weight: 300;
 }
+
 
 .login-user {
   margin: 5vh 0;
 }
 
 .login-button {
-  font-family: Roboto-Bold;
-  font-size: 18px;
+  font-family: "Roboto";
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  font-weight:400;
   color: white;
   background-color: #1b95e0;
   width: 100%;
@@ -96,12 +106,20 @@ h2 {
   font-size: 1.3rem;
   color: #99B6D8;
 }
+
+.account-message a {
+  text-decoration: underline;
+  font-weight: 300;
+  font-size: 1.2rem;
+
+}
 .form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   font-size: 1.7rem;
+  
 }
 
 .button {
@@ -110,11 +128,12 @@ h2 {
   border: 1px solid white;
   display: inline-block;
   color: #4742B8;
-  font-family: Roboto-Bold;
+  font-family: "Roboto";
+  font-weight: 400;
   text-decoration: none;
   margin: 1.5vh auto;
   font-size: 1.3rem;
-  width: 70%;
+  width: 75vw;
   height: 2.6rem;
 }
 .button:hover {
@@ -125,24 +144,51 @@ button:focus, input:focus {
 }
 
 .text-input {
-  margin: 1.5vh auto;
+  margin: 2vh auto;
   font-size: 1.3rem;
-  border: 3px solid #d2dfee;
-  border-radius: 5px;
+  border: 2px solid #d2dfee;
+  border-radius: 3px;
   background-color: inherit;
   height: 2.6rem;
   background-color: #d2dfee;
   color: #99B6D8;
-  width: 70%;
+  width: 75%;
 }
 
 input[type=text], input[type=password] {
   color: rgb(108, 130, 155);
+  font-size: 1rem;
 }
 
-.text {
+/* .text {
   letter-spacing: 2px;
   font-weight: 300;
+} */
+
+/* --sign-up -- */
+.signup-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: auto;
+}
+
+.signup-header {
+  font-family: "Roboto";
+  font-weight: 400;
+  color: #D2DFEE;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 4vh;
+}
+
+.signup-user input {
+  margin: 2vh;
+}
+
+.signup-user p {
+  margin-top: 6vh;
 }
 
 
